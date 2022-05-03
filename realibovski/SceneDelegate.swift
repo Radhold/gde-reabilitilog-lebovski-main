@@ -23,14 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        if UserDefaults.standard.bool(forKey: "authorized") {
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "navigationVC") as? UINavigationController
-            window?.rootViewController = vc
-        } else {
-            UserDefaults.standard.set(true, forKey: "authorized")
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "authVC") as? AuthViewController
-            window?.rootViewController = vc
-        }
+//        if UserDefaults.standard.bool(forKey: "authorized") {
+//            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "navigationVC") as? UINavigationController
+//            window?.rootViewController = vc
+//        } else {
+//            UserDefaults.standard.set(true, forKey: "authorized")
+//            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "authVC") as? AuthViewController
+//            window?.rootViewController = vc
+//        }
+        
+//        if UserDefaults.standard.bool(forKey: "about")
+        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "aboutVC") as? AboutUserViewController
+        window?.rootViewController = vc
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

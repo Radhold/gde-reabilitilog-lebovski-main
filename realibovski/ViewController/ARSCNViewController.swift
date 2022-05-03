@@ -1,9 +1,3 @@
-//
-//  ARSCNViewController.swift
-//  Eye Tracking
-//
-//
-
 import Foundation
 import UIKit
 import ARKit

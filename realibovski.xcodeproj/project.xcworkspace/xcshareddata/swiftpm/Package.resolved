@@ -1,16 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "PinLayout",
-        "repositoryURL": "https://github.com/layoutBox/PinLayout",
-        "state": {
-          "branch": "master",
-          "revision": "b4c8f7c4d3cfb73626cbf2c80303dae32373a993",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager",
+      "state" : {
+        "branch" : "master",
+        "revision" : "09d22c087732b02d4fb594c7bb61502bf7bb2378"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "pinlayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/layoutBox/PinLayout",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b4c8f7c4d3cfb73626cbf2c80303dae32373a993"
+      }
+    }
+  ],
+  "version" : 2
 }
