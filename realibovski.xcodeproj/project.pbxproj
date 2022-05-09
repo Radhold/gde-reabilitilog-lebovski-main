@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6F0DAC932776F3E8006D0E47 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DAC922776F3E8006D0E47 /* CategoriesViewController.swift */; };
-		6F0E6C2D2775DD1000050F69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E6C2C2775DD1000050F69 /* AppDelegate.swift */; };
-		6F0E6C2F2775DD1000050F69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E6C2E2775DD1000050F69 /* SceneDelegate.swift */; };
 		6F0E6C342775DD1000050F69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E6C322775DD1000050F69 /* Main.storyboard */; };
 		6F0E6C372775DD1000050F69 /* realibovski.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E6C352775DD1000050F69 /* realibovski.xcdatamodeld */; };
-		6F0E6C392775DD1100050F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E6C382775DD1100050F69 /* Assets.xcassets */; };
 		6F0E6C3C2775DD1100050F69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E6C3A2775DD1100050F69 /* LaunchScreen.storyboard */; };
 		6FA5282927771AAA0001C18D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA5282827771AAA0001C18D /* AuthViewController.swift */; };
 		A84645B0277733B00016983C /* AppearanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84645A2277733AF0016983C /* AppearanceProvider.swift */; };
@@ -25,8 +22,24 @@
 		A84645B7277733B00016983C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84645AB277733AF0016983C /* NetworkManager.swift */; };
 		A854349E28215E3000786535 /* RightSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854349D28215E3000786535 /* RightSide.swift */; };
 		A85434A02821D0BE00786535 /* AboutUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854349F2821D0BE00786535 /* AboutUserViewController.swift */; };
+		A85658222829976900AACA7D /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658212829976900AACA7D /* UserDTO.swift */; };
+		A85658242829991000AACA7D /* JWTDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658232829991000AACA7D /* JWTDTO.swift */; };
+		A8565827282999F900AACA7D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A8565826282999F900AACA7D /* RxCocoa */; };
+		A8565829282999F900AACA7D /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A8565828282999F900AACA7D /* RxRelay */; };
+		A856582B282999F900AACA7D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A856582A282999F900AACA7D /* RxSwift */; };
+		A856582E28299A6500AACA7D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A856582D28299A6500AACA7D /* Alamofire */; };
+		A856583228299C6800AACA7D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856583128299C6800AACA7D /* AuthService.swift */; };
+		A856583428299CAE00AACA7D /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856583328299CAE00AACA7D /* RegistrationRequest.swift */; };
+		A85658362829A26C00AACA7D /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658352829A26C00AACA7D /* StatsService.swift */; };
+		A85658382829A29600AACA7D /* RightSideStatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658372829A29600AACA7D /* RightSideStatsRequest.swift */; };
+		A856583A2829A2D900AACA7D /* EyeStatsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658392829A2D900AACA7D /* EyeStatsDTO.swift */; };
+		A856583C2829A3DA00AACA7D /* SuccessDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856583B2829A3DA00AACA7D /* SuccessDTO.swift */; };
+		A856583E2829AD2C00AACA7D /* EyeTrackerStatsUploadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A856583D2829AD2C00AACA7D /* EyeTrackerStatsUploadRequest.swift */; };
+		A85658D52829B28500AACA7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658D42829B28500AACA7D /* AppDelegate.swift */; };
+		A85658D72829B2AD00AACA7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85658D62829B2AD00AACA7D /* SceneDelegate.swift */; };
+		A85658DD2829B2D600AACA7D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A85658DC2829B2D600AACA7D /* Info.plist */; };
+		A856594E2829B37200AACA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A856594D2829B37200AACA7D /* Assets.xcassets */; };
 		A85929AD2821DE1000D62F31 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A85929AC2821DE1000D62F31 /* IQKeyboardManagerSwift */; };
-		A8AA5AFA27773E08004BC3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8AA5AEE27773E08004BC3DF /* Assets.xcassets */; };
 		A8AA5AFB27773E08004BC3DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5AF027773E08004BC3DF /* Constants.swift */; };
 		A8AA5AFC27773E08004BC3DF /* AutolayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5AF127773E08004BC3DF /* AutolayoutExtension.swift */; };
 		A8AA5AFD27773E08004BC3DF /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA5AF227773E08004BC3DF /* CGPointExtension.swift */; };
@@ -40,13 +53,9 @@
 /* Begin PBXFileReference section */
 		6F0DAC922776F3E8006D0E47 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		6F0E6C292775DD1000050F69 /* realibovski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = realibovski.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F0E6C2C2775DD1000050F69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6F0E6C2E2775DD1000050F69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6F0E6C332775DD1000050F69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6F0E6C362775DD1000050F69 /* realibovski.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = realibovski.xcdatamodel; sourceTree = "<group>"; };
-		6F0E6C382775DD1100050F69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F0E6C3B2775DD1100050F69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6F0E6C3D2775DD1100050F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FA5282827771AAA0001C18D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		A84645A2277733AF0016983C /* AppearanceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceProvider.swift; sourceTree = "<group>"; };
 		A84645A4277733AF0016983C /* AuxiliaryModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuxiliaryModels.swift; sourceTree = "<group>"; };
@@ -58,7 +67,19 @@
 		A84645AB277733AF0016983C /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A854349D28215E3000786535 /* RightSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSide.swift; sourceTree = "<group>"; };
 		A854349F2821D0BE00786535 /* AboutUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserViewController.swift; sourceTree = "<group>"; };
-		A8AA5AEE27773E08004BC3DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../eye-tracking-master 2/Eye Tracking/Eye Tracking/Ressources/Assets.xcassets"; sourceTree = "<group>"; };
+		A85658212829976900AACA7D /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		A85658232829991000AACA7D /* JWTDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTDTO.swift; sourceTree = "<group>"; };
+		A856583128299C6800AACA7D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		A856583328299CAE00AACA7D /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
+		A85658352829A26C00AACA7D /* StatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
+		A85658372829A29600AACA7D /* RightSideStatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightSideStatsRequest.swift; sourceTree = "<group>"; };
+		A85658392829A2D900AACA7D /* EyeStatsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeStatsDTO.swift; sourceTree = "<group>"; };
+		A856583B2829A3DA00AACA7D /* SuccessDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessDTO.swift; sourceTree = "<group>"; };
+		A856583D2829AD2C00AACA7D /* EyeTrackerStatsUploadRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeTrackerStatsUploadRequest.swift; sourceTree = "<group>"; };
+		A85658D42829B28500AACA7D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A85658D62829B2AD00AACA7D /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A85658DC2829B2D600AACA7D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A856594D2829B37200AACA7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8AA5AF027773E08004BC3DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A8AA5AF127773E08004BC3DF /* AutolayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutExtension.swift; sourceTree = "<group>"; };
 		A8AA5AF227773E08004BC3DF /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
@@ -73,7 +94,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8565827282999F900AACA7D /* RxCocoa in Frameworks */,
 				A8AA5B0427773E4D004BC3DF /* PinLayout in Frameworks */,
+				A856582B282999F900AACA7D /* RxSwift in Frameworks */,
+				A856582E28299A6500AACA7D /* Alamofire in Frameworks */,
+				A8565829282999F900AACA7D /* RxRelay in Frameworks */,
 				A85929AD2821DE1000D62F31 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,23 +125,32 @@
 		6F0E6C2B2775DD1000050F69 /* realibovski */ = {
 			isa = PBXGroup;
 			children = (
-				6F0E6C2C2775DD1000050F69 /* AppDelegate.swift */,
-				6F0E6C2E2775DD1000050F69 /* SceneDelegate.swift */,
+				A856583028299C5C00AACA7D /* service */,
+				A856582F28299C2000AACA7D /* api */,
 				6F0DAC922776F3E8006D0E47 /* CategoriesViewController.swift */,
+				A85658DC2829B2D600AACA7D /* Info.plist */,
+				A85658D42829B28500AACA7D /* AppDelegate.swift */,
 				6FA5282827771AAA0001C18D /* AuthViewController.swift */,
 				A854349F2821D0BE00786535 /* AboutUserViewController.swift */,
+				A85658D62829B2AD00AACA7D /* SceneDelegate.swift */,
 				6F0E6C322775DD1000050F69 /* Main.storyboard */,
 				A84645A2277733AF0016983C /* AppearanceProvider.swift */,
 				A84645A3277733AF0016983C /* Models */,
 				A84645AB277733AF0016983C /* NetworkManager.swift */,
 				A84645AA277733AF0016983C /* NumberTileGame.swift */,
-				A8AA5AEE27773E08004BC3DF /* Assets.xcassets */,
 				A8AA5AEF27773E08004BC3DF /* Helper */,
+				A8AA5AF027773E08004BC3DF /* Constants.swift */,
+				A8AA5AF127773E08004BC3DF /* AutolayoutExtension.swift */,
+				A8AA5AF227773E08004BC3DF /* CGPointExtension.swift */,
+				A8AA5AF327773E08004BC3DF /* CGFloatExtension.swift */,
 				A8AA5AF427773E08004BC3DF /* ViewController */,
+				A8AA5AF527773E08004BC3DF /* eyeViewController.swift */,
+				A8AA5AF627773E08004BC3DF /* ARSCNViewController.swift */,
+				A854349D28215E3000786535 /* RightSide.swift */,
+				A8AA5AF727773E08004BC3DF /* Custom Views */,
 				A84645A6277733AF0016983C /* Views */,
-				6F0E6C382775DD1100050F69 /* Assets.xcassets */,
 				6F0E6C3A2775DD1100050F69 /* LaunchScreen.storyboard */,
-				6F0E6C3D2775DD1100050F69 /* Info.plist */,
+				A856594D2829B37200AACA7D /* Assets.xcassets */,
 				6F0E6C352775DD1000050F69 /* realibovski.xcdatamodeld */,
 			);
 			path = realibovski;
@@ -127,6 +161,10 @@
 			children = (
 				A84645A4277733AF0016983C /* AuxiliaryModels.swift */,
 				A84645A5277733AF0016983C /* GameModel.swift */,
+				A85658212829976900AACA7D /* UserDTO.swift */,
+				A85658232829991000AACA7D /* JWTDTO.swift */,
+				A85658392829A2D900AACA7D /* EyeStatsDTO.swift */,
+				A856583B2829A3DA00AACA7D /* SuccessDTO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,13 +179,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A856582F28299C2000AACA7D /* api */ = {
+			isa = PBXGroup;
+			children = (
+				A856583328299CAE00AACA7D /* RegistrationRequest.swift */,
+				A85658372829A29600AACA7D /* RightSideStatsRequest.swift */,
+				A856583D2829AD2C00AACA7D /* EyeTrackerStatsUploadRequest.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		A856583028299C5C00AACA7D /* service */ = {
+			isa = PBXGroup;
+			children = (
+				A856583128299C6800AACA7D /* AuthService.swift */,
+				A85658352829A26C00AACA7D /* StatsService.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
 		A8AA5AEF27773E08004BC3DF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A8AA5AF027773E08004BC3DF /* Constants.swift */,
-				A8AA5AF127773E08004BC3DF /* AutolayoutExtension.swift */,
-				A8AA5AF227773E08004BC3DF /* CGPointExtension.swift */,
-				A8AA5AF327773E08004BC3DF /* CGFloatExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -155,10 +208,6 @@
 		A8AA5AF427773E08004BC3DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A8AA5AF527773E08004BC3DF /* eyeViewController.swift */,
-				A8AA5AF627773E08004BC3DF /* ARSCNViewController.swift */,
-				A854349D28215E3000786535 /* RightSide.swift */,
-				A8AA5AF727773E08004BC3DF /* Custom Views */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -198,6 +247,10 @@
 			packageProductDependencies = (
 				A8AA5B0327773E4D004BC3DF /* PinLayout */,
 				A85929AC2821DE1000D62F31 /* IQKeyboardManagerSwift */,
+				A8565826282999F900AACA7D /* RxCocoa */,
+				A8565828282999F900AACA7D /* RxRelay */,
+				A856582A282999F900AACA7D /* RxSwift */,
+				A856582D28299A6500AACA7D /* Alamofire */,
 			);
 			productName = realibovski;
 			productReference = 6F0E6C292775DD1000050F69 /* realibovski.app */;
@@ -230,6 +283,8 @@
 			packageReferences = (
 				A8AA5B0227773E4D004BC3DF /* XCRemoteSwiftPackageReference "PinLayout" */,
 				A85929AB2821DE1000D62F31 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				A8565825282999F900AACA7D /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A856582C28299A6500AACA7D /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 6F0E6C2A2775DD1000050F69 /* Products */;
 			projectDirPath = "";
@@ -246,9 +301,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0E6C3C2775DD1100050F69 /* LaunchScreen.storyboard in Resources */,
-				6F0E6C392775DD1100050F69 /* Assets.xcassets in Resources */,
-				A8AA5AFA27773E08004BC3DF /* Assets.xcassets in Resources */,
+				A856594E2829B37200AACA7D /* Assets.xcassets in Resources */,
 				6F0E6C342775DD1000050F69 /* Main.storyboard in Resources */,
+				A85658DD2829B2D600AACA7D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,26 +314,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85658362829A26C00AACA7D /* StatsService.swift in Sources */,
+				A85658382829A29600AACA7D /* RightSideStatsRequest.swift in Sources */,
+				A85658D72829B2AD00AACA7D /* SceneDelegate.swift in Sources */,
 				A84645B6277733B00016983C /* NumberTileGame.swift in Sources */,
 				A8AA5AFF27773E08004BC3DF /* eyeViewController.swift in Sources */,
-				6F0E6C2D2775DD1000050F69 /* AppDelegate.swift in Sources */,
-				6F0E6C2F2775DD1000050F69 /* SceneDelegate.swift in Sources */,
 				A84645B7277733B00016983C /* NetworkManager.swift in Sources */,
+				A856583C2829A3DA00AACA7D /* SuccessDTO.swift in Sources */,
 				A8AA5AFB27773E08004BC3DF /* Constants.swift in Sources */,
 				A84645B1277733B00016983C /* AuxiliaryModels.swift in Sources */,
+				A856583228299C6800AACA7D /* AuthService.swift in Sources */,
 				A84645B0277733B00016983C /* AppearanceProvider.swift in Sources */,
 				A8AA5AFC27773E08004BC3DF /* AutolayoutExtension.swift in Sources */,
 				A8AA5B0027773E08004BC3DF /* ARSCNViewController.swift in Sources */,
 				A84645B3277733B00016983C /* TileView.swift in Sources */,
+				A85658242829991000AACA7D /* JWTDTO.swift in Sources */,
 				A8AA5B0127773E08004BC3DF /* Crosshair.swift in Sources */,
 				A8AA5AFE27773E08004BC3DF /* CGFloatExtension.swift in Sources */,
 				A8AA5AFD27773E08004BC3DF /* CGPointExtension.swift in Sources */,
+				A85658D52829B28500AACA7D /* AppDelegate.swift in Sources */,
 				6FA5282927771AAA0001C18D /* AuthViewController.swift in Sources */,
+				A856583A2829A2D900AACA7D /* EyeStatsDTO.swift in Sources */,
 				A84645B2277733B00016983C /* GameModel.swift in Sources */,
+				A856583428299CAE00AACA7D /* RegistrationRequest.swift in Sources */,
 				A854349E28215E3000786535 /* RightSide.swift in Sources */,
 				A84645B4277733B00016983C /* GameboardView.swift in Sources */,
+				A85658222829976900AACA7D /* UserDTO.swift in Sources */,
 				A84645B5277733B00016983C /* AccessoryViews.swift in Sources */,
 				A85434A02821D0BE00786535 /* AboutUserViewController.swift in Sources */,
+				A856583E2829AD2C00AACA7D /* EyeTrackerStatsUploadRequest.swift in Sources */,
 				6F0DAC932776F3E8006D0E47 /* CategoriesViewController.swift in Sources */,
 				6F0E6C372775DD1000050F69 /* realibovski.xcdatamodeld in Sources */,
 			);
@@ -482,6 +546,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A8565825282999F900AACA7D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		A856582C28299A6500AACA7D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A85929AB2821DE1000D62F31 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -501,6 +581,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A8565826282999F900AACA7D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8565825282999F900AACA7D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A8565828282999F900AACA7D /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8565825282999F900AACA7D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		A856582A282999F900AACA7D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8565825282999F900AACA7D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		A856582D28299A6500AACA7D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A856582C28299A6500AACA7D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		A85929AC2821DE1000D62F31 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A85929AB2821DE1000D62F31 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;

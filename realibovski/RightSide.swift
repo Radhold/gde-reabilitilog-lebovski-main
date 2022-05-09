@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import ARKit
 import PinLayout
+import RxSwift
 
 class RightSide: eyeViewController {
     
@@ -11,9 +12,6 @@ class RightSide: eyeViewController {
         case right = "right"
         case left = "left"
         
-//        func random() -> String {
-//            Self.all
-//        }
     }
     
     var directions = [Direction]()
@@ -51,9 +49,10 @@ class RightSide: eyeViewController {
     var flag = false
     
     var errors = 0
+    let disposeBag = DisposeBag()
     
-    var timeForTest = [UInt64]()
-    var currentTime: DispatchTime!
+    var timeForTest = [Double]()
+    var currentTime = CFAbsoluteTimeGetCurrent()
     let scoreLabel: UILabel = {
         $0.text = "Score: 0"
         $0.font = UIFont(name: "Helvetica Neue", size: 28)
@@ -69,8 +68,25 @@ class RightSide: eyeViewController {
     var count = 0 {
         didSet {
             if count == 10{
-                showAlert()
+                
+//                showAlert()
+                StatsService.sendRightSideStats(stats: EyeStatsDTO(
+                    errorCount: errors,
+                    timeForAction: timeForTest,
+                    maxQue: maxQue.max() ?? 0,
+                    score: score)
+                ).subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+                    .observe(on: MainScheduler.instance)
+                    .subscribe(onSuccess: { [weak self] response in
+                    }, onFailure: { [weak self] error in
+                            return
+                        }
+                    )
+                    .disposed(by: disposeBag)
                 print(maxQue.max())
+                navigationController?.popViewController(animated: true)
+                
+                
             }
         }
     }
@@ -154,7 +170,7 @@ class RightSide: eyeViewController {
         guard ARFaceTrackingConfiguration.isSupported else {
             fatalError("Face tracking is not supported on this device")
         }
-        currentTime = .now()
+        currentTime = CFAbsoluteTimeGetCurrent()
         setupARSCNView()
         crosshair.center = view.center
         //sceneView.scene.rootNode.addChildNode(nodeInFrontOfScreen)
@@ -248,7 +264,7 @@ class RightSide: eyeViewController {
             if left > 0.9 && right > 0.9 && self.flag == false {
                 self.count += 1
                 self.flag = true
-                self.timeForTest.append(DispatchTime.now().rawValue - self.currentTime.rawValue)
+                self.timeForTest.append(CFAbsoluteTimeGetCurrent() - self.currentTime)
                 DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.2){
                     self.flag = false
                 }
@@ -296,7 +312,7 @@ class RightSide: eyeViewController {
                         self.que = 0
                     }
                 }
-                self.currentTime = DispatchTime.now()
+                self.currentTime = CFAbsoluteTimeGetCurrent()
                 self.changeArrows()
             }
             
@@ -323,11 +339,6 @@ class RightSide: eyeViewController {
             self.view.bringSubviewToFront(self.firstStack)
             self.view.bringSubviewToFront(self.thirdStack)
         }
-        
-        
-        
-       
-        
         middleLine.backgroundColor = .cyan
         upLine.backgroundColor = .cyan
         downLine.backgroundColor = .cyan
@@ -342,10 +353,6 @@ class RightSide: eyeViewController {
             directionsCount[element] = (directionsCount[element] ?? 0) + 1
             return element
         }
-        let up: Int = directionsCount[.up] ?? 0,
-            down: Int = directionsCount[.down] ?? 0,
-            left: Int = directionsCount[.left] ?? 0,
-            right: Int = directionsCount[.right] ?? 0
         
         let max = directionsCount.values.max()
         

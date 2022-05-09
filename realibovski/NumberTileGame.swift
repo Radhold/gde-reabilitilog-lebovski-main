@@ -170,8 +170,8 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let alert = UIAlertController(title: "Victory", message: "You won!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
         present(alert, animated: true)
-        let manager = NetworkManager()
-        manager.request(parameters: formJSONString(), method: "POST", endpoint: "send_data_2048")
+//        let manager = NetworkManager()
+//        manager.request(parameters: formJSONString(), method: "POST", endpoint: "send_data_2048")
         _captureSession.stopRunning()
       // TODO: At this point we should stall the game until the user taps 'New Game' (which hasn't been implemented yet)
       return
@@ -188,8 +188,8 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let alert = UIAlertController(title: "Defeat", message: "You lost...", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
         present(alert, animated: true)
-        let manager = NetworkManager()
-        manager.request(parameters: formJSONString(), method: "POST", endpoint: "send_data_2048")
+//        let manager = NetworkManager()
+//        manager.request(parameters: formJSONString(), method: "POST", endpoint: "send_data_2048")
         _captureSession.stopRunning()
     }
   }
@@ -334,8 +334,6 @@ extension NumberTileGameViewController: AVCaptureVideoDataOutputSampleBufferDele
                     if #available(iOS 15.0, *) {
                         if let pitch = observation.pitch {
                             let pitchValue = pitch.doubleValue * 180.0 / Double.pi
-                            // 20 - down
-                            // -20 -up
                             if pitchValue >= 10 {
                                 DispatchQueue.main.async {
                                     self.downCommand()
@@ -352,16 +350,10 @@ extension NumberTileGameViewController: AVCaptureVideoDataOutputSampleBufferDele
                             }
                             
                             
-                        } else {
-                            print("-------")
                         }
-                    } else {
-                        // Fallback on earlier versions
                     }
                     if let roll = observation.roll {
                         let rollValue = roll.doubleValue * 180.0 / Double.pi
-                        //20 - right
-                        //-20 - left
                         if rollValue >= 15 {
                             DispatchQueue.main.async {
                                 self.rightCommand()
@@ -378,8 +370,6 @@ extension NumberTileGameViewController: AVCaptureVideoDataOutputSampleBufferDele
                             sleep(1)
                         }
                         
-                    } else {
-                        print("-------")
                     }
                 }
                 captureSessiongroup.leave()

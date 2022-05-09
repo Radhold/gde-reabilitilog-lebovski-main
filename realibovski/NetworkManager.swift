@@ -1,48 +1,222 @@
-//
-//  NetworkManager.swift
-//  swift-2048
-//
-//  Created by Yaroslav Fomenko on 25.12.2021.
-//  Copyright © 2021 Austin Zheng. All rights reserved.
-//
-
 import Foundation
+import Alamofire
+import RxSwift
+import RxCocoa
 
-final class NetworkManager {
-    private var url: String = "http://61cb-77-220-209-41.ngrok.io"
+struct UploadData {
+    let data: Data
+    let key: String
+    let filename: String
+    let mimeType: String
+}
+
+class BaseRequest {
+
+    var host = UserDefaults.standard.string(forKey: "server") ?? ""
+    var session: Session = {
+        return Session.default
+    }()
+
+    lazy var headers: [String: String] = {
+
+        var innerHeaders: [String: String] = [:]
+
+        innerHeaders["Accept"] = "application/json"
+        innerHeaders["Content-Type"] = "application/json"
+        innerHeaders["Jwt"] = "\(AuthService.jwt)"
+        
+        return innerHeaders
+
+    }()
+
+    var parameters: [String: Any] = [String: Any]()
+
+    var path = ""
+
+    var encoding: ParameterEncoding = JSONEncoding.default
     
-    func request(parameters: Data?, method: String = "GET", endpoint: String = "") {
-        guard let url = URL(string: "\(url)/\(endpoint)") else {
-            return
+    private let maxRetryCount = 3
+    
+    func request<T: Decodable>() -> Single<T> {
+        getRequest()
+    }
+
+    func deleteRequest<T: Decodable>() -> Single<T> {
+        request(.delete)
+    }
+
+    func postRequest<T: Decodable>() -> Single<T> {
+        request(.post)
+    }
+
+    func getRequest<T: Decodable>() -> Single<T> {
+        request(.get)
+    }
+
+    func putRequest<T: Decodable>() -> Single<T> {
+        request(.put)
+    }
+    
+    func uploadRequest<T: Decodable>(data: [String: UploadData]) -> Single<T> {
+
+        let url = URL(string: host + path)
+        let urlRequest = try! URLRequest(url: url!, method: .post, headers: HTTPHeaders(headers))
+        let parameters = self.parameters
+        let session = self.session
+
+        return Single<T>.create { single -> Disposable in
+            session.upload(
+                    multipartFormData: { multipartFormData in
+                        for (key, value) in data {
+                            multipartFormData.append(
+                                    value.data,
+                                    withName: key,
+                                    fileName: value.filename,
+                                    mimeType: value.mimeType
+                            )
+                        }
+
+                        for (key, value) in parameters {
+                            if let v = value as? String, let data = v.data(using: String.Encoding.utf8) {
+                                multipartFormData.append(data, withName: key)
+                            }
+                        }
+                    },
+                    with: urlRequest,
+                    interceptor: self
+            )
+                    .uploadProgress { progress in
+                        print("Upload Progress: \(progress.fractionCompleted)")
+                    }
+                    .validate()
+                    .responseJSON { response in
+                        BaseRequest.responseJSON(response: response) { (data: T?, error: Error?) in
+                            if let error = error {
+//                                single(.error(error))
+                            } else if let result = data {
+                                single(.success(result))
+                            } else if let error = error {
+//                                single(.error(error))
+                            } else {
+//                                single(.error(makeError(with: NSLocalizedString("Wrong data format", comment: ""))))
+                            }
+                        }
+                    }
+            
+            return Disposables.create()
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method
+    }
+
+    func request<T: Decodable>(_ method: Alamofire.HTTPMethod) -> Single<T> {
+
+        let requestEncoding = method == .get ? URLEncoding.default : encoding
+
+        let endpoint = host + "/" + path
+        let parameters = self.parameters
+        let headers = self.headers
+        let session = self.session
         
-        request.setValue("application/json", forHTTPHeaderField: "accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        if let parameters = parameters{
-//            guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
-//                return
-//            }
-            request.httpBody = parameters
+        return Single<T>.create { single -> Disposable in
+            session.request(
+                            endpoint,
+                            method: method,
+                            parameters: parameters,
+                            encoding: requestEncoding,
+                            headers: HTTPHeaders(headers),
+                            interceptor: self
+                    )
+                    .validate()
+                    .responseJSON { response in
+                        BaseRequest.responseJSON(response: response) { (data: T?, error: Error?) in
+                            if let error = error {
+//                                single(.error(error))
+                            } else if let result = data {
+                                single(.success(result))
+                            } else {
+//                                single(.error(makeError(with: NSLocalizedString("Wrong data format", comment: ""))))
+                            }
+                        }
+                    }
+
+            return Disposables.create()
         }
-        URLSession.shared.dataTask(with: request) {data, response, error in
-            if let error = error {
-//                completion(.failure(error))
+
+    }
+    
+
+    static func responseJSON<T: Decodable>(response: AFDataResponse<Any>, callback: @escaping (T?, Error?) -> Void) {
+        switch response.result {
+        case .success:
+            guard let data = response.data else {
+//                callback(nil, makeError(with: NSLocalizedString("There is no data from server", comment: "")))
+                print(response.debugDescription)
                 return
             }
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
-                if ((json!["answer"] as? String)?.contains("success"))! {
-                    print ("OK")
-                    if let image = json!["image"] {
-                        print ("Get image")
-                    }
+//            if let baseError = try? JSONDecoder().decode(Error.self, from: data) {
+//                callback(nil, makeError(from: baseError))
+//            } else {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    callback(try decoder.decode(T.self, from: data), nil)
+                } catch {
+                    callback(nil, error)
                 }
-            } catch {
-                print(error)
+//            }
+        case .failure(let error):
+//            if let baseError = try? JSONDecoder().decode(ErrorResponseDTO.self, from: response.data ?? Data()) {
+//                callback(nil, makeError(from: baseError))
+//                return
+//            }
+            if case AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength) = error {
+                callback(nil, nil)
+                return
             }
-        }.resume()
+            
+            callback(nil, error)
+        }
     }
+
+}
+
+
+extension BaseRequest: RequestInterceptor {
+    
+    func retry(_ request: Request, for session: Session, dueTo error: Error,
+                  completion: @escaping (RetryResult) -> Void) {
+        
+        guard request.retryCount < maxRetryCount,
+              error.code == .internetConnection ||
+            error.code == .internetConnectionInterrupted else {
+            completion(.doNotRetry)
+            return
+        }
+ 
+        let delay: TimeInterval
+        switch request.retryCount {
+        case 1:
+            delay = 1
+        case 2:
+            delay = 3
+        default:
+            delay = 0
+        }
+        completion(.retryWithDelay(delay))
+    }
+    
+}
+
+extension Error {
+    var code: ErrorCode { ErrorCode(rawValue: (self as NSError).code) ?? .unknownError }
+    var domain: String { (self as NSError).domain }
+}
+
+enum ErrorCode: Int {
+    case unknownError = -999
+    case internetConnection = -1009
+    case internetConnectionInterrupted = 13
+    
+    case canceledByUser = -2
+    case fallbackToPassword = -3
+    case lockedOut = -8
 }

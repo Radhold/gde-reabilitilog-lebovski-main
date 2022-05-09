@@ -1,7 +1,11 @@
 import Foundation
 import UIKit
+import RxSwift
 
 class AboutUserViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    let disposeBag = DisposeBag()
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -36,7 +40,7 @@ class AboutUserViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
 
     let sexOptions = ["Мужской", "Женский"]
-    let ageOptions = Array(14...100)
+    let ageOptions = Array(6...100)
     let cogniOptions = ["Да", "Нет"]
     var pickers: [UIPickerView] = [UIPickerView(), UIPickerView(), UIPickerView()]
     @IBOutlet weak var sex: UITextField! {
@@ -82,6 +86,13 @@ class AboutUserViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             cogni.delegate = self
         }
     }
+    
+    @IBOutlet weak var serverURL: UITextField! {
+        didSet {
+            serverURL.text = UserDefaults.standard.string(forKey: "server")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,9 +100,26 @@ class AboutUserViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     }
     
     @IBAction func action(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "navigationVC") as? UINavigationController
-        UIApplication.shared.windows.first?.rootViewController = vc
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        UserDefaults.standard.set(serverURL.text, forKey: "server")
+        
+//        let manager = NetworkManager()
+//        manager.request(parameters: UserDTO(gender: sex.text, age: Int(age.text ?? ""), cognitiveDisorder: cogni.text))
+        AuthService.registration(userData: UserDTO(
+            gender: sex.text,
+            age: Int(age.text ?? "") ?? 0,
+            cognitiveDisorder: cogni.text)
+        ).subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] authResponse in
+                AuthService.jwt = authResponse.jwt
+                let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "navigationVC") as? UINavigationController
+                UIApplication.shared.windows.first?.rootViewController = vc
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            }, onError: { [weak self] error in
+                    return
+                }
+            )
+            .disposed(by: disposeBag)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

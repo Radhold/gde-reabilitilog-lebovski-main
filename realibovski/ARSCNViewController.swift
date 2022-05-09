@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import ARKit
 import PinLayout
+import RxSwift
 
 class ARSCNViewController: eyeViewController {
     
@@ -10,9 +11,10 @@ class ARSCNViewController: eyeViewController {
     var flag = false
     
     var errors = 0
+    let disposeBag = DisposeBag()
     
-    var timeForTest = [UInt64]()
-    var currentTime: DispatchTime!
+    var timeForTest = [Double]()
+    var currentTime = CFAbsoluteTimeGetCurrent()
     let scoreLabel: UILabel = {
         $0.text = "Score: 0"
         $0.font = UIFont(name: "Helvetica Neue", size: 28)
@@ -48,9 +50,23 @@ class ARSCNViewController: eyeViewController {
     
     var count = 0 {
         didSet {
-            if count == 30{
-                showAlert()
+            if count == 10{
+//                showAlert()
+                StatsService.sendEyeTrackerStats(stats: EyeStatsDTO(
+                    errorCount: errors,
+                    timeForAction: timeForTest,
+                    maxQue: maxQue.max() ?? 0,
+                    score: score)
+                ).subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+                    .observe(on: MainScheduler.instance)
+                    .subscribe(onSuccess: { [weak self] response in
+                    }, onFailure: { [weak self] error in
+                            return
+                        }
+                    )
+                    .disposed(by: disposeBag)
                 print(maxQue.max())
+                navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -118,7 +134,7 @@ class ARSCNViewController: eyeViewController {
 		guard ARFaceTrackingConfiguration.isSupported else {
 			fatalError("Face tracking is not supported on this device")
 		}
-        currentTime = .now()
+        currentTime = CFAbsoluteTimeGetCurrent()
 		setupARSCNView()
         crosshair.center = view.center
 		//sceneView.scene.rootNode.addChildNode(nodeInFrontOfScreen)
@@ -214,10 +230,10 @@ class ARSCNViewController: eyeViewController {
 				self.crosshair.center = self.points.average()
             })
                 let height: Double = self.sceneView.bounds.height
-                if left > 0.9 && right > 0.9 && self.flag == false {
+                if left > 0.75 && right > 0.75 && self.flag == false {
                     self.count += 1
                     self.flag = true
-                    self.timeForTest.append(DispatchTime.now().rawValue - self.currentTime.rawValue)
+                    self.timeForTest.append(CFAbsoluteTimeGetCurrent() - self.currentTime)
                     DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.2){
                         self.flag = false
                     }
@@ -254,7 +270,7 @@ class ARSCNViewController: eyeViewController {
                             self.que = 0
                         }
                     }
-                    self.currentTime = DispatchTime.now()
+                    self.currentTime = CFAbsoluteTimeGetCurrent()
                     self.changeImage()
                     
                 }
